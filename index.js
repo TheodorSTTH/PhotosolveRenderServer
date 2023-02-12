@@ -15,5 +15,8 @@ app.post('/', async function (req, res) {
     })
     res.send(out)
 })
+app.get('/', async function (req, res) {
+    res.send("The server is active on Render")
+})
 console.log("Listening on port " + port)
 app.listen(port)
