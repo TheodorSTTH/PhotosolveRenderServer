@@ -4,17 +4,16 @@ const Tesseract = require('tesseract.js');
 const app = express();
 const port = 3000;
 app.post('/', async function (req, res) {
-    console.log(JSON.stringify(req.body))
-    return res.send("YO")
-    const { url } = req.body;
+    // const { url } = req.body;
+    let out = "NOTEXT"
     await Tesseract.recognize(
-        url,
-        'eng',
-        { logger: m => console.log(m) }
+        'https://tesseract.projectnaptha.com/img/eng_bw.png',
+        'eng'
+        // { logger: m => console.log(m) }
     ).then(({ data: { text } }) => {
-        console.log(text);
+        out = text;
     })
-    res.send('Hello World')
+    res.send(out)
 })
 console.log("Listening on port " + port)
 app.listen(port)
